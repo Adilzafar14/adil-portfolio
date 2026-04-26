@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adil Zafar — Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --purple: #6C3BEE;
+  --purple-light: #7c4dff;
+  --purple-dark: #5a2fd0;
+  --white: #ffffff;
+  --light-gray: #f5f5f5;
+  --text: #1a1a1a;
+  --text-light: #555555;
+  --border: #e0e0e0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  --white: #0f0f1a;
+  --light-gray: #1a1a2e;
+  --text: #f0f0f0;
+  --text-light: #aaaaaa;
+  --border: #2a2a3e;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--white);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-size: 1.4rem; font-weight: 800;
+  color: var(--purple); letter-spacing: 0.05em;
+}
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.dark-toggle {
+  background: none; border: none; cursor: pointer;
+  font-size: 1.1rem; color: var(--text); padding: 0.3rem;
+}
+.hamburger {
+  background: none; border: none; cursor: pointer;
+  font-size: 1.3rem; color: var(--text); padding: 0.3rem;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--white); z-index: 999;
+  display: flex; flex-direction: column;
+  padding: 5rem 2rem 2rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu .close-btn {
+  position: absolute; top: 1.2rem; right: 1.5rem;
+  background: none; border: none; font-size: 1.5rem;
+  cursor: pointer; color: var(--text);
+}
+.mobile-menu a {
+  font-size: 1.3rem; font-weight: 500;
+  color: var(--text); text-decoration: none;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--purple); }
+
+/* ===== HERO ===== */
+#home {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 7rem 1.5rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(108,59,238,0.1);
+  color: var(--purple);
+  font-size: 0.8rem; font-weight: 600;
+  padding: 0.35rem 1rem; border-radius: 20px;
+  margin-bottom: 1rem; letter-spacing: 0.08em;
+}
+#home h1 {
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  font-weight: 800; line-height: 1.1;
+  margin-bottom: 0.5rem; color: var(--text);
+}
+#home h1 span { color: var(--purple); }
+.hero-role {
+  font-size: 1rem; font-weight: 600;
+  color: var(--text-light); margin-bottom: 1.2rem;
+  letter-spacing: 0.05em;
+}
+.hero-desc {
+  max-width: 560px; font-size: 0.88rem;
+  color: var(--text-light); line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.hero-desc strong { color: var(--text); }
+.hero-location {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.4rem; font-size: 0.82rem; color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+.hero-location span { color: var(--purple); font-weight: 600; }
+.hero-btns {
+  display: flex; gap: 1rem; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 2rem;
+}
+.btn-primary {
+  background: var(--purple); color: white;
+  padding: 0.8rem 2rem; border-radius: 8px;
+  text-decoration: none; font-weight: 600;
+  font-size: 0.88rem; transition: all 0.3s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--purple-dark); transform: translateY(-2px); }
+.btn-outline {
+  background: transparent; color: var(--purple);
+  padding: 0.8rem 2rem; border-radius: 8px;
+  text-decoration: none; font-weight: 600;
+  font-size: 0.88rem; border: 2px solid var(--purple);
+  transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--purple); color: white; transform: translateY(-2px); }
+.hero-socials {
+  display: flex; gap: 1rem; justify-content: center;
+}
+.social-circle {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); text-decoration: none; font-size: 1rem;
+  transition: all 0.3s;
+}
+.social-circle:hover { border-color: var(--purple); color: var(--purple); transform: translateY(-3px); }
+
+/* Skills ticker */
+.skills-ticker {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--purple); padding: 0.7rem 0; overflow: hidden;
+}
+.ticker-inner {
+  display: flex; gap: 2.5rem;
+  animation: ticker 25s linear infinite; width: max-content;
+}
+.ticker-item {
+  color: white; font-size: 0.82rem; font-weight: 500;
+  white-space: nowrap; display: flex; align-items: center; gap: 0.5rem;
+}
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* Stats */
+.stats-row {
+  display: flex; gap: 1rem; justify-content: center;
+  flex-wrap: wrap; margin: 3rem 0 1.5rem;
+}
+.stat-box {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 1.2rem 1.5rem;
+  text-align: center; min-width: 120px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.stat-box:hover { border-color: var(--purple); transform: translateY(-3px); }
+.stat-num {
+  font-size: 1.8rem; font-weight: 800; color: var(--purple); display: block;
+}
+.stat-label { font-size: 0.72rem; color: var(--text-light); margin-top: 0.2rem; }
+
+/* ===== SECTIONS ===== */
+section { padding: 4.5rem 1.5rem; }
+.section-title {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 800; text-align: center;
+  margin-bottom: 2.5rem; line-height: 1.15;
+}
+.section-title span { color: var(--purple); }
+
+/* ===== ABOUT ===== */
+#about { background: var(--light-gray); }
+.about-card {
+  max-width: 640px; margin: 0 auto;
+  background: var(--white); border-radius: 16px;
+  padding: 2rem; border: 1.5px solid var(--border);
+  text-align: center;
+}
+.about-avatar {
+  width: 90px; height: 90px; border-radius: 50%;
+  border: 3px solid var(--purple);
+  background: rgba(108,59,238,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; margin: 0 auto 1rem;
+}
+.about-card h3 {
+  font-size: 1rem; font-weight: 700; margin-bottom: 1rem;
+  line-height: 1.5; color: var(--text);
+}
+.about-card h3 span { color: var(--purple); }
+.about-card p {
+  font-size: 0.86rem; color: var(--text-light);
+  line-height: 1.8; margin-bottom: 0.9rem;
+}
+.about-tags {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; margin-top: 1.2rem;
+}
+.about-tag {
+  background: rgba(108,59,238,0.08);
+  color: var(--purple); border: 1px solid rgba(108,59,238,0.2);
+  border-radius: 20px; padding: 0.3rem 0.9rem;
+  font-size: 0.75rem; font-weight: 600;
+}
+
+/* ===== SKILLS ===== */
+#skills { background: var(--white); }
+.skills-grid {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  max-width: 640px; margin: 0 auto;
+}
+.skill-category-card {
+  background: var(--light-gray);
+  border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 1.5rem;
+  transition: border-color 0.3s;
+}
+.skill-category-card:hover { border-color: var(--purple); }
+.skill-cat-title {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--purple); margin-bottom: 1rem;
+}
+.skill-bars { display: flex; flex-direction: column; gap: 0.8rem; }
+.skill-row { }
+.skill-row-top {
+  display: flex; justify-content: space-between;
+  font-size: 0.82rem; margin-bottom: 0.3rem;
+}
+.skill-name-label { font-weight: 500; color: var(--text); }
+.skill-pct { color: var(--purple); font-weight: 600; font-size: 0.78rem; }
+.skill-bar-bg {
+  height: 6px; background: var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), #a78bfa);
+  border-radius: 3px;
+  transition: width 1.2s ease;
+  width: 0;
+}
+.skill-bar-fill.animated { }
+
+/* ===== SERVICES ===== */
+#services { background: var(--light-gray); }
+.services-grid {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  max-width: 600px; margin: 0 auto;
+}
+.service-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 2rem 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.service-card:hover {
+  border-color: var(--purple);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(108,59,238,0.12);
+}
+.service-icon { font-size: 2.3rem; color: var(--purple); margin-bottom: 0.8rem; }
+.service-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--purple); margin-bottom: 0.7rem; }
+.service-card p { font-size: 0.84rem; color: var(--text-light); line-height: 1.7; }
+
+/* ===== PROJECTS ===== */
+#portfolio { background: var(--white); }
+.projects-list {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  max-width: 680px; margin: 0 auto;
+}
+.project-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(108,59,238,0.12); }
+.project-banner {
+  width: 100%; height: 110px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; gap: 1rem; position: relative;
+  overflow: hidden;
+}
+.p-insightflow { background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 100%); }
+.p-construction { background: linear-gradient(135deg, #0d2137 0%, #1565c0 100%); }
+.p-swiggy { background: linear-gradient(135deg, #1a0a00 0%, #e65100 100%); }
+.p-myntra { background: linear-gradient(135deg, #1a0020 0%, #6a1b9a 100%); }
+.project-banner .badge {
+  position: absolute; top: 0.7rem; right: 0.7rem;
+  background: rgba(255,255,255,0.15);
+  color: white; font-size: 0.68rem; font-weight: 600;
+  padding: 0.2rem 0.6rem; border-radius: 20px;
+  letter-spacing: 0.05em; backdrop-filter: blur(4px);
+}
+.project-info { padding: 1.2rem 1.5rem; }
+.project-tag {
+  display: inline-block;
+  background: rgba(108,59,238,0.1); color: var(--purple);
+  font-size: 0.7rem; font-weight: 600;
+  padding: 0.2rem 0.7rem; border-radius: 20px;
+  margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.project-info h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.4rem; }
+.project-info p { font-size: 0.81rem; color: var(--text-light); line-height: 1.65; margin-bottom: 0.8rem; }
+.project-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+.chip {
+  background: var(--light-gray); border: 1px solid var(--border);
+  border-radius: 4px; padding: 0.18rem 0.55rem;
+  font-size: 0.7rem; color: var(--text-light); font-weight: 500;
+}
+.project-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  color: var(--purple); font-size: 0.8rem; font-weight: 600;
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+.project-link:hover { gap: 0.7rem; }
+
+/* ===== EDUCATION ===== */
+#education { background: var(--light-gray); }
+.edu-list { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem; }
+.edu-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 14px; padding: 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+  transition: border-color 0.3s;
+}
+.edu-card:hover { border-color: var(--purple); }
+.edu-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: rgba(108,59,238,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.edu-degree { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+.edu-school { font-size: 0.82rem; color: var(--purple); font-weight: 600; margin-bottom: 0.2rem; }
+.edu-year { font-size: 0.78rem; color: var(--text-light); }
+
+/* ===== STRENGTHS ===== */
+#strengths { background: var(--white); }
+.strengths-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; max-width: 560px; margin: 0 auto;
+}
+.strength-item {
+  background: var(--light-gray); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 1rem;
+  display: flex; align-items: center; gap: 0.7rem;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.strength-item:hover { border-color: var(--purple); transform: translateY(-3px); }
+.strength-icon { font-size: 1.3rem; }
+.strength-text { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+
+/* ===== CONTACT ===== */
+#contact { background: var(--light-gray); }
+.contact-info {
+  max-width: 500px; margin: 0 auto 2rem;
+  display: flex; flex-direction: column; gap: 0.9rem;
+}
+.contact-item {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 1rem 1.2rem;
+  display: flex; align-items: center; gap: 1rem;
+  text-decoration: none; color: var(--text);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.contact-item:hover { border-color: var(--purple); transform: translateX(4px); }
+.contact-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(108,59,238,0.1); color: var(--purple);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.contact-label { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.1em; }
+.contact-value { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+
+.contact-form {
+  max-width: 500px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.form-input {
+  width: 100%; padding: 1rem 1.2rem;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-family: 'Poppins', sans-serif; font-size: 0.88rem;
+  color: var(--text); background: var(--white);
+  outline: none; transition: border-color 0.3s;
+}
+.form-input:focus { border-color: var(--purple); }
+.form-input::placeholder { color: var(--text-light); }
+textarea.form-input { resize: vertical; min-height: 140px; }
+.btn-send {
+  background: var(--purple); color: white; border: none;
+  padding: 1rem; border-radius: 10px;
+  font-family: 'Poppins', sans-serif; font-size: 0.95rem;
+  font-weight: 600; cursor: pointer; transition: all 0.3s;
+}
+.btn-send:hover { background: var(--purple-dark); transform: translateY(-2px); }
+
+/* Availability badge */
+.avail-badge {
+  max-width: 500px; margin: 1.5rem auto 0;
+  background: rgba(108,59,238,0.08);
+  border: 1.5px solid rgba(108,59,238,0.25);
+  border-radius: 12px; padding: 1rem 1.2rem;
+  text-align: center; font-size: 0.84rem;
+  color: var(--text);
+}
+.avail-badge strong { color: var(--purple); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--purple); color: white;
+  text-align: center; padding: 1.5rem;
+  font-size: 0.82rem;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-up {
+  opacity: 0; transform: translateY(35px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">ADIL</div>
+  <div class="nav-right">
+    <button class="dark-toggle" onclick="toggleDark()" title="Dark mode">🌙</button>
+    <button class="hamburger" onclick="openMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="closeMenu()">✕</button>
+  <a href="#home" onclick="closeMenu()">Home</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+  <a href="#education" onclick="closeMenu()">Education</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-tag">👋 Available for Immediate Joining</div>
+  <h1>Hello, I am<br><span>Adil Zafar</span></h1>
+  <div class="hero-role">Data Analyst · Python · Advanced SQL · Power BI · Automation</div>
+  <p class="hero-desc">
+    Final-year B.Tech CSE student and creator of <strong>InsightFlow AI</strong> — a live deployed analytics platform automating business intelligence for SMBs. Passionate about translating raw data into actionable decisions that drive real business impact.
+  </p>
+  <div class="hero-location">
+    <i class="fas fa-map-marker-alt"></i>
+    Lucknow, India &nbsp;·&nbsp; Open to: <span>Delhi-NCR / Gurgaon / Noida / Saudi Arabia</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#portfolio" class="btn-primary">View Projects</a>
+    <a href="#contact" class="btn-outline">Contact Me</a>
+  </div>
+  <div class="hero-socials">
+    <a href="https://github.com/Adilzafar14" target="_blank" class="social-circle"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/adilzafar-dataanalyst" target="_blank" class="social-circle"><i class="fab fa-linkedin-in"></i></a>
+    <a href="mailto:adilzafar14@gmail.com" class="social-circle"><i class="fas fa-envelope"></i></a>
+    <a href="tel:+919801302830" class="social-circle"><i class="fas fa-phone"></i></a>
+  </div>
+
+  <!-- Ticker -->
+  <div class="skills-ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">📊 SQL (CTEs, Window Functions)</span>
+      <span class="ticker-item">🐍 Python · Pandas · NumPy</span>
+      <span class="ticker-item">📈 Power BI Dashboards</span>
+      <span class="ticker-item">🤖 AI APIs · Groq · Claude</span>
+      <span class="ticker-item">⚡ Streamlit Apps</span>
+      <span class="ticker-item">🔄 ETL Pipelines</span>
+      <span class="ticker-item">📊 Plotly · Matplotlib</span>
+      <span class="ticker-item">🗄️ MySQL · Supabase</span>
+      <span class="ticker-item">📋 Excel · Pivot Tables</span>
+      <span class="ticker-item">🔍 EDA · KPI Analysis</span>
+      <!-- Duplicate -->
+      <span class="ticker-item">📊 SQL (CTEs, Window Functions)</span>
+      <span class="ticker-item">🐍 Python · Pandas · NumPy</span>
+      <span class="ticker-item">📈 Power BI Dashboards</span>
+      <span class="ticker-item">🤖 AI APIs · Groq · Claude</span>
+      <span class="ticker-item">⚡ Streamlit Apps</span>
+      <span class="ticker-item">🔄 ETL Pipelines</span>
+      <span class="ticker-item">📊 Plotly · Matplotlib</span>
+      <span class="ticker-item">🗄️ MySQL · Supabase</span>
+      <span class="ticker-item">📋 Excel · Pivot Tables</span>
+      <span class="ticker-item">🔍 EDA · KPI Analysis</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title fade-up">About <span>Me</span></div>
+  <div class="about-card fade-up">
+    <div class="about-avatar">👨‍💻</div>
+    <h3>Hi there! I'm <span>Adil Zafar</span> — Data Analyst & Creator of <span>InsightFlow AI</span></h3>
+    <p>Final-year B.Tech CSE student at Integral University, Lucknow. I built InsightFlow AI — a live deployed analytics platform that automates business intelligence for SMBs across Hospital, E-Commerce, Logistics, and Education sectors.</p>
+    <p>Skilled in SQL, Python, Power BI, and Excel with hands-on experience in data cleaning, EDA, dashboard development, and ETL pipelines. I love turning messy raw data into clean, actionable insights that actually help businesses grow.</p>
+    <p>Along with data analytics, I have experience integrating AI APIs (Groq, Claude), building Streamlit web apps, and working with tools like Supabase, ReportLab, and MySQL Workbench.</p>
+    <div class="about-tags">
+      <span class="about-tag">Quick Learner</span>
+      <span class="about-tag">Problem Solver</span>
+      <span class="about-tag">Attention to Detail</span>
+      <span class="about-tag">Self-Motivated</span>
+      <span class="about-tag">Team Player</span>
+      <span class="about-tag">Deadline-Driven</span>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row fade-up">
+    <div class="stat-box">
+      <span class="stat-num">4+</span>
+      <div class="stat-label">Major Projects</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">61K+</span>
+      <div class="stat-label">Records Analyzed</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">$64M+</span>
+      <div class="stat-label">Data Value Handled</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">4</span>
+      <div class="stat-label">Sectors Covered</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-title fade-up">My <span>Skills</span></div>
+  <div class="skills-grid">
+
+    <div class="skill-category-card fade-up">
+      <div class="skill-cat-title">⚡ Core Skills</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">SQL (CTEs, Window Functions, Joins)</span><span class="skill-pct">92%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">Python (Pandas, NumPy)</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">Power BI Dashboarding</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category-card fade-up">
+      <div class="skill-cat-title">🛠️ Supporting Tools</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">Excel (Pivot Tables, Advanced Formulas)</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">Streamlit &amp; Plotly</span><span class="skill-pct">82%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">AI APIs (Groq, Claude)</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-category-card fade-up">
+      <div class="skill-cat-title">🗄️ Tools & Platforms</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">MySQL Workbench</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">Supabase</span><span class="skill-pct">78%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="78"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-label">Git &amp; GitHub</span><span class="skill-pct">83%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="83"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-title fade-up">My <span>Services</span></div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
+      <h3>Data Analytics & EDA</h3>
+      <p>I analyze and interpret complex datasets to help organizations make data-driven decisions. Using Python (Pandas, NumPy, Matplotlib), Excel, and Power BI — I transform raw data into actionable insights and visual dashboards.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-database"></i></div>
+      <h3>Advanced SQL & ETL</h3>
+      <p>End-to-end SQL analysis using CTEs, Window Functions, RANK, DENSE_RANK, and complex joins. I also build ETL pipelines using Python & SQL to automate data flow from source to dashboard.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-robot"></i></div>
+      <h3>AI-Powered Analytics Apps</h3>
+      <p>Building intelligent analytics platforms using Streamlit, Groq AI, and Claude AI. I integrate NLP-based chatbots for natural language querying and OCR bill scanners — so users get insights without writing any code.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-tachometer-alt"></i></div>
+      <h3>Dashboard Development</h3>
+      <p>Creating interactive Power BI dashboards with real-time KPI tracking, cost distribution analysis, risk monitoring, and dynamic slicers — enabling managers to make faster, better decisions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="portfolio">
+  <div class="section-title fade-up">Latest <span>Projects</span></div>
+  <div class="projects-list">
+
+    <div class="project-card fade-up">
+      <div class="project-banner p-insightflow">
+        <span>🤖 📊 ⚡</span>
+        <span class="badge">LIVE DEPLOYED</span>
+      </div>
+      <div class="project-info">
+        <div class="project-tag">AI + Analytics Platform</div>
+        <h3>InsightFlow AI — Automated Analytics & Reporting</h3>
+        <p>Streamlit-based analytics platform generating automated dashboards & AI-driven insights from CSV/Excel datasets across Hospital, E-Commerce, Logistics & Education. Includes AI Chatbot (Groq + Claude), OCR Bill Scanner, role-based access, and PDF report generation.</p>
+        <div class="project-chips">
+          <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">Supabase</span>
+          <span class="chip">Plotly</span><span class="chip">Groq AI</span><span class="chip">Claude AI</span><span class="chip">ReportLab</span>
+        </div>
+        <a href="https://insightflow-adil.streamlit.app" target="_blank" class="project-link">
+          🔗 Live Demo <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-banner p-construction">
+        <span>🏗️ 📉 💰</span>
+        <span class="badge">1300+ Records · $64.38M</span>
+      </div>
+      <div class="project-info">
+        <div class="project-tag">Data Analytics · Power BI</div>
+        <h3>Construction Project Cost & Performance Analytics</h3>
+        <p>Analyzed 1,300+ task-level records worth $64.38M to identify risk patterns. Discovered 51% of budget allocated to Low Risk tasks — recommended reallocation to High Risk tasks averaging 15.63 days delay. Built interactive Power BI dashboard for real-time monitoring.</p>
+        <div class="project-chips">
+          <span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Power BI</span>
+          <span class="chip">MySQL Workbench</span><span class="chip">Google Colab</span>
+        </div>
+        <a href="https://github.com/Adilzafar14/construction-project-analytics" target="_blank" class="project-link">
+          <i class="fab fa-github"></i> GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-banner p-swiggy">
+        <span>🍔 📊 🏙️</span>
+        <span class="badge">61,425+ Records · 534 Cities</span>
+      </div>
+      <div class="project-info">
+        <div class="project-tag">Advanced SQL</div>
+        <h3>Swiggy Restaurant Analytics — Advanced SQL Project</h3>
+        <p>End-to-end SQL analysis on 61,425+ records across 534 Indian cities using CTEs, Window Functions, RANK, DENSE_RANK, NTILE. Identified Bangalore as top city (6,580+ outlets), North Indian as most popular cuisine, avg rating ~3.7 nationwide.</p>
+        <div class="project-chips">
+          <span class="chip">Advanced SQL</span><span class="chip">CTEs</span><span class="chip">Window Functions</span>
+          <span class="chip">RANK / DENSE_RANK</span><span class="chip">MySQL Workbench</span>
+        </div>
+        <a href="https://github.com/Adilzafar14/swiggy-sql-project" target="_blank" class="project-link">
+          <i class="fab fa-github"></i> GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-banner p-myntra">
+        <span>👗 📈 🛍️</span>
+        <span class="badge">Excel Dashboard</span>
+      </div>
+      <div class="project-info">
+        <div class="project-tag">Excel Analytics</div>
+        <h3>Myntra Sales Performance Dashboard</h3>
+        <p>Cleaned raw sales dataset using text & mathematical formulas. Performed Univariate & Bivariate analysis on sales distributions. Built interactive dashboard with Pivot Tables and Slicers enabling dynamic filtering by Brand and Product categories.</p>
+        <div class="project-chips">
+          <span class="chip">Microsoft Excel</span><span class="chip">Pivot Tables</span>
+          <span class="chip">Slicers</span><span class="chip">Advanced Formulas</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-title fade-up">My <span>Education</span></div>
+  <div class="edu-list">
+    <div class="edu-card fade-up">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-degree">B.Tech in Computer Science & Engineering</div>
+        <div class="edu-school">Integral University, Lucknow</div>
+        <div class="edu-year">Expected May 2026</div>
+      </div>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-icon">🏫</div>
+      <div>
+        <div class="edu-degree">Diploma in Mechanical Engineering</div>
+        <div class="edu-school">Integral University, Lucknow</div>
+        <div class="edu-year">2020 – 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section id="strengths" style="background:var(--white);">
+  <div class="section-title fade-up">My <span>Strengths</span></div>
+  <div class="strengths-grid fade-up">
+    <div class="strength-item"><span class="strength-icon">⚡</span><span class="strength-text">Quick Learner</span></div>
+    <div class="strength-item"><span class="strength-icon">🧠</span><span class="strength-text">Strong Problem-Solving</span></div>
+    <div class="strength-item"><span class="strength-icon">🔍</span><span class="strength-text">Attention to Detail</span></div>
+    <div class="strength-item"><span class="strength-icon">🎯</span><span class="strength-text">Self-Motivated</span></div>
+    <div class="strength-item"><span class="strength-icon">⏰</span><span class="strength-text">Works Under Deadlines</span></div>
+    <div class="strength-item"><span class="strength-icon">🤝</span><span class="strength-text">Team Player</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title fade-up">Contact <span>Me!</span></div>
+
+  <div class="contact-info fade-up">
+    <a href="mailto:adilzafar14@gmail.com" class="contact-item">
+      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">adilzafar14@gmail.com</div>
+      </div>
+    </a>
+    <a href="tel:+919801302830" class="contact-item">
+      <div class="contact-icon"><i class="fas fa-phone"></i></div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 9801302830</div>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/adilzafar-dataanalyst" target="_blank" class="contact-item">
+      <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">linkedin.com/in/adilzafar-dataanalyst</div>
+      </div>
+    </a>
+    <a href="https://github.com/Adilzafar14" target="_blank" class="contact-item">
+      <div class="contact-icon"><i class="fab fa-github"></i></div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">github.com/Adilzafar14</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="contact-form fade-up">
+    <input type="text" class="form-input" placeholder="Full Name">
+    <input type="email" class="form-input" placeholder="Email Address">
+    <input type="text" class="form-input" placeholder="Subject">
+    <textarea class="form-input" placeholder="Your Message"></textarea>
+    <button class="btn-send" onclick="sendMessage()">Send Message</button>
+  </div>
+
+  <div class="avail-badge fade-up">
+    ✅ <strong>Available for immediate joining.</strong> Open to relocation: Delhi-NCR, Gurgaon, Noida &amp; Saudi Arabia.
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Adil Zafar &nbsp;·&nbsp; Data Analyst · Python · SQL · Power BI &nbsp;·&nbsp; Lucknow, India</p>
+</footer>
+
+<script>
+  function toggleDark() {
+    document.body.classList.toggle('dark');
+    document.querySelector('.dark-toggle').textContent =
+      document.body.classList.contains('dark') ? '☀️' : '🌙';
+  }
+  function openMenu() { document.getElementById('mobileMenu').classList.add('open'); }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        // Animate skill bars
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Contact
+  function sendMessage() {
+    const inputs = document.querySelectorAll('.contact-form .form-input');
+    let empty = false;
+    inputs.forEach(i => { if (!i.value.trim()) empty = true; });
+    if (empty) { alert('Please fill in all fields!'); return; }
+    alert('✅ Message sent! Adil will get back to you soon.');
+    inputs.forEach(i => i.value = '');
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
